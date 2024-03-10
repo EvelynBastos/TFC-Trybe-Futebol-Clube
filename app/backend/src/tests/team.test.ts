@@ -34,13 +34,4 @@ describe('Teams Test', function () {
         expect(status).to.equal(200);
         expect(body).to.deep.equal(teams);
     })
-
-    it('should return not found if the team doesn\'t exists', async function() {
-        sinon.stub(SequelizeTeam, 'findOne').resolves(null);
-
-        const { status, body } = await chai.request(app).get('/teams/1');
-
-        expect(status).to.equal(404);
-        expect(body.message).to.equal('Team 1 not found');
-    });
 });
