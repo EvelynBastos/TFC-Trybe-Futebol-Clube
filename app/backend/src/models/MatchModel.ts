@@ -25,4 +25,10 @@ export default class MatchModel implements IMatchModel {
     });
     return dbMatchesInProgress;
   }
+
+  async updateMatch(id: number) {
+    const [match] = await this.matches.update({ inProgress: false }, {
+      where: { id } });
+    return match;
+  }
 }

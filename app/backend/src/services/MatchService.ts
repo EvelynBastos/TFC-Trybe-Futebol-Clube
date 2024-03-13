@@ -16,4 +16,9 @@ export default class MatchService {
     const filterMatches = await this.matchModel.findAll(q);
     return { status: mapStatusHTTP.successful, data: filterMatches };
   }
+
+  public async toogleMatchInProgress(id: number) {
+    await this.matchModel.updateMatch(id);
+    return { status: mapStatusHTTP.successful, data: { message: 'Finished' } };
+  }
 }

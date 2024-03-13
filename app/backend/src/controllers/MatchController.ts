@@ -12,4 +12,11 @@ export default class MatchController {
       .getAllMatches(inProgress as string | undefined);
     return res.status(status).json(data);
   };
+
+  public toogleMatchInProgress = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const { status, data } = await this.matchService
+      .toogleMatchInProgress(Number(id));
+    return res.status(status).json(data);
+  };
 }
