@@ -1,5 +1,5 @@
 import { IMatch } from './IMatch';
 
 export interface IMatchModel {
-  findAll(): Promise<IMatch[]>
+  findAll(q: string | undefined): Promise<IMatch[]>
 }

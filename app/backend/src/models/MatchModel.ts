@@ -5,8 +5,11 @@ import { IMatchModel } from '../Interfaces/matches/IMatchModel';
 export default class MatchModel implements IMatchModel {
   private matches = SequelizeMatch;
 
-  async findAll() {
-    const dbMatches = await this.matches.findAll({
+  async findAll(q: string | undefined) {
+    const condition = q !== undefined ? { inProgress: q === 'true' } : {};
+    const dbMatchesInProgress = await this.matches.findAll({
+
+      where: condition,
       include: [
         {
           model: SequelizeTeam,
@@ -20,6 +23,6 @@ export default class MatchModel implements IMatchModel {
         },
       ],
     });
-    return dbMatches;
+    return dbMatchesInProgress;
   }
 }
