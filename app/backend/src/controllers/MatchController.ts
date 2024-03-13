@@ -19,4 +19,15 @@ export default class MatchController {
       .toogleMatchInProgress(Number(id));
     return res.status(status).json(data);
   };
+
+  public updateScoreMatch = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const { homeTeamGoals, awayTeamGoals } = req.body;
+    const { status, data } = await this.matchService.updateScoreMatch(
+      Number(id),
+      homeTeamGoals,
+      awayTeamGoals,
+    );
+    return res.status(status).json(data);
+  };
 }
